@@ -13,7 +13,7 @@ Dataset$Date <- as.Date(Dataset$Date,format="%d/%m/%Y")
 Data <- filter(Dataset, Date >= "2007-02-01" & Date <= "2007-02-02")
 
 #Generating png and plot
-#png("plot4.png", width = 480, height = 480)
+png("plot4.png", width = 480, height = 480)
 datetime <- paste(as.Date(Data$Date), Data$Time)
 Data$Datetime <- as.POSIXct(datetime)
 
@@ -26,8 +26,7 @@ plot(Data$Datetime,Data$Voltage,type="l",ylab="Voltage", xlab="datetime")
 plot(Data$Datetime,Data$Sub_metering_1,ylab="Energy sub metering", xlab="", type="l", col="black")
 points(Data$Datetime,Data$Sub_metering_2, col="red", type="l")
 points(Data$Datetime,Data$Sub_metering_3, col="blue", type="l")
-legend("topright", lwd=1, col=c("black", "red", "blue"), legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
+legend("topright",  bty="n",col=c("black", "red", "blue"), legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"))
 #Fourth Plot
-
-
-#dev.off()
+plot(Data$Datetime,Data$Global_reactive_power,type="l", xlab="datetime", ylab="Global_reactive_power",breaks=100)
+dev.off()
